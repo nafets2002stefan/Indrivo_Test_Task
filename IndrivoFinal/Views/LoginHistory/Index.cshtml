@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IndrivoFinal.Models.LoginHistory>
+
+@{
+    ViewBag.Title = "Login History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login History</h2>
+
+@if (!Model.Any())
+{
+    <p>We don't have any login history.</p>
+}
+
+else
+{
+    <table id="loginHistory" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th> @Html.DisplayName("User Name")</th>
+                <th> @Html.DisplayName("Date")</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var history in Model)
+            {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => history.Username)</td>
+            <td>@Html.DisplayFor(modelItem => history.LoginTime) </td>
+        </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#loginHistory").DataTable();
+        });
+    </script>
+        
+}
